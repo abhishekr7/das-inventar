@@ -1,0 +1,201 @@
+
+html{
+    scroll-behavior: smooth;
+}
+*{
+  box-sizing: border-box;
+}
+body{
+  margin: 0;
+  font-family: Arial,sans-serif;
+  background:black;
+  overflow: hidden;
+  color: orange;
+  font-size: 20px;
+
+}
+
+input[type=text]{
+  width: 10%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  height: 10px;
+}
+
+/* Add a background color when the inputs get focus */
+input[type=text]:focus{
+  background-color: white;
+  outline: none;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: orange;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  opacity: 0.85;
+  font-size: 15px;
+
+  height: 40px;
+  align-items:center;
+  display:inline;
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+  font-family: sans-serif;
+  border: 1px solid orange;
+  overflow: hidden;
+
+}
+
+button:hover {
+  opacity:0.9;
+}
+
+.main{
+  width: 100%;
+  position: relative;
+}
+#veg-container {
+    visibility:hidden;
+    width:100%;
+    padding: 50px 20px;
+
+}
+
+#nonveg-container {
+    visibility: hidden;
+    width:100%;
+    position: absolute;
+    padding: 50px 20px;
+
+}
+
+#both-container {
+    visibility: hidden;
+    width:100%;
+    position: absolute;
+    padding: 50px 20px;
+
+}
+
+.address{
+
+  visibility: hidden;
+  width: 100%;
+  vertical-align: middle;
+
+
+}
+
+
+.veg {
+    visibility:hidden;
+  }
+
+.nonveg {
+    visibility:hidden;
+  }
+.both {
+    visibility:hidden;
+  }
+
+
+
+input[type=checkbox]:checked ~ .nonveg {
+    visibility:visible;
+
+}
+
+input[type=checkbox]:checked ~ .both {
+    visibility:visible;
+
+}
+p{
+  font-size: 25px;
+  display: block;
+  align-content: center;
+}
+.both-veg, .both-nonveg{
+    width:50%;
+    float: left;
+    border: 1px solid orange;
+}
+.veg-pizzas,.nonveg-pizzas{
+    border: 1px solid orange;
+}
+.choices,.address{
+      margin-top: 10px;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+      font-size: 20px;
+
+
+}
+
+.bill{
+  margin-top: 10px;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  font-size: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 40%;
+  visibility: hidden;
+  vertical-align: middle;
+
+
+}
+.address label
+{
+    display: inline-block;
+    margin-left:5px;
+    width:15%;
+    min-width:60px;
+    padding-left: 25px;
+}
+/*
+.address input
+{
+    margin-right:9px;
+    display: inline-block;
+    width:20%;
+    font-size:15px;
+    min-width:30px;
+}*/
+.code{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  font-size: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  visibility: hidden;
+  vertical-align: middle;
+
+
+}
+.code input
+{
+    margin-right:9px;
+    display: inline-block;
+    width:60%;
+    font-size:15px;
+
+    min-width:30px;
+}
+.code label
+{
+    display: inline-block;
+    margin-left:5px;
+    width:5%;
+    min-width:60px;
+}
