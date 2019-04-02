@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/assets/css/Offers.css">
+  </head>
+  <body>
+
+    <div class="list">
+        <ul>
+            <li>    <a href="mainpage" class="nav_menu">HOME</a>   </li>
+            <li>    <a href="menu" class="nav_menu">OUR MENU</a>   </li>
+            <li>    <a href="offer" class="nav_offers">OFFERS</a>   </li>
+            <li>    <a href="contact" class="nav_contact">CONTACT</a> </li>
+            <li>    <a href="order" class="nav_contact">ORDER</a> </li>
+
+
+        </ul>
+    </div>
+
+
+        <div class="main">
+
+
+              <div class="offer" id="offer1" value="1211">
+
+                  <p>Select any one Medium pizza get one Small pizza free</p>
+                  <button type="button" id="offer1" name="button" value="1211" onclick="CodeGenerator(this)">Avail the code</button>
+              </div>
+
+              <div class="offer" id="offer2" value="1312">
+                <p>Select any one Large pizza get one Medium pizza free</p>
+                <button type="button" id="offer2" name="button" value="1312" onclick="CodeGenerator(this)">Avail the code</button>
+
+              </div>
+
+              <div class="offer" id="offer3" value="2111">
+                <p>Select two Small pizzas get one Small pizza free</p>
+                <button type="button" id="offer3" name="button" value="2111" onclick="CodeGenerator(this)">Avail the code</button>
+
+              </div>
+
+              <div class="offer" id="offer4" value="2212">
+                <p>Select two Medium pizza get one Medium pizza free</p>
+                <button type="button" id="offer4" name="button" value="2212" onclick="CodeGenerator(this)">Avail the code</button>
+
+              </div>
+
+              <div class="offer" id="offer5" value="2313">
+                <p>Select two Large pizza get one Large pizza free</p>
+                <button type="button" id="offer5" name="button" value="2313" onclick="CodeGenerator(this)">Avail the code</button>
+
+              </div>
+
+
+
+        </div>
+
+        <div class="TnC">
+          <p>TERMS AND CONDITIONS</p>
+          <ul>
+            <li>Offer will not be applicable on Sides, Desserts and other Add-ons.</li>
+            <li>    Offer cannot be clubbed with any other offer / scheme (such as Coupons).</li>
+            <li>    Only one coupon is applicable per transaction.</li>
+          </ul>
+
+
+
+        </div>
+
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+          <!-- Modal content -->
+          <div class="modal-content">
+            <div class="modal-header">
+              <span class="close">&times;</span>
+              <h2>OFFER CODE</h2>
+            </div>
+            <div class="modal-body" id="textcode">
+
+            </div>
+            <div class="modal-footer">
+              <h3>Please remember this code!</h3>
+              <p style="font-size:20px">(Use this code in Order section while placing your order)</p>
+            </div>
+          </div>
+
+        </div>
+
+
+        <script type="text/javascript">
+              function CodeGenerator(cb)
+              {
+                // Get the modal
+                    var modal = document.getElementById('myModal');
+                    // Get the button that opens the modal
+                    var offer=cb.id;
+                    var btn = document.getElementById(offer);
+                    var value=cb.value;
+                    // Get the <span> element that closes the modal
+                    var span = document.getElementsByClassName("close")[0];
+                    document.getElementById("textcode").innerHTML="Your code is "+String(value);
+                    // When the user clicks the button, open the modal
+                    btn.onclick = function() {
+                      modal.style.display = "block";
+                    }
+                    // When the user clicks on <span> (x), close the modal
+                    span.onclick = function() {
+                      modal.style.display = "none";
+                    }
+                    // When the user clicks anywhere outside of the modal, close it
+                    window.onclick = function(event) {
+                      if (event.target == modal) {
+                        modal.style.display = "none";
+                      }
+                    }
+              }
+        </script>
+
+  </body>
+</html>

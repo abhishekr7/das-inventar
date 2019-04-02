@@ -1,3 +1,10 @@
+.temp{
+    height:700px;
+    width:100%;
+    /*background-color: orange;*/
+    display: block;
+}
+
 html{
     scroll-behavior: smooth;
 }
@@ -9,6 +16,7 @@ body{
   font-family: Arial,sans-serif;
   background:black;
   overflow: hidden;
+  font-size: 20px;
 
 }
 ul{
@@ -85,6 +93,7 @@ ul{
   border: 1px solid orange;
   float: right;
   overflow: hidden;
+  font-size: 15px;
 
 
 }
@@ -129,6 +138,7 @@ input[type=text], input[type=password] {
 input[type=text]:focus, input[type=password]:focus {
   background-color: white;
   outline: none;
+  border:1px solid orange;
 }
 
 /* Set a style for all buttons */
@@ -149,8 +159,14 @@ button:hover {
 .psw:hover{
     opacity:1;
 }
-label,p{
+label{
    color: orange;
+}
+p{
+  color: orange;
+  text-align: center;
+  padding: 10px 10px;
+
 }
 /* Extra styles for the cancel button */
 .cancelbtn {
@@ -233,8 +249,37 @@ hr {
 
 /*End*/
 
+table{
+
+  color:orange;
+  background-color: black;
+  width:100%;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  border:none;
+}
+
+td{
+  width:33.3%;
+  height: 100%
+  padding: 5px;
+  border:none;
+
+  border: 1px solid orange;
+}
 img{
+  max-width: 100%;
+  height: 100%;
   vertical-align: middle;
+  width: 100%;
+}
+
+.grid{
+  padding: 50px 50px;
 }
 /* Slideshow container */
 .slideshow-container {

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="/assets/css/Confirm.css">
+	</head>
+<body>
+	<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>BILL</h2>
+    </div>
+    <div class="modal-body" id="bill_id">
+
+    </div>
+
+   	<div class="modal-body" id="address_id">
+
+    </div>
+
+    <div class="modal-footer">
+      <p>Your Pizzas will be delivered in 30 minutes</p>
+      <h3>THANK YOU :)</h3>
+      <script type = "text/javascript" >
+        function Bill()
+        {
+        // Get the modal
+            var modal = document.getElementById('myModal');
+            // Get the button that opens the modal
+            //var offer=document.getElementById("code").value;
+            var btn = document.getElementById("button");
+            //alert(offer)
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+            document.getElementById("bill_id").innerHTML="<h3>Your bill is Rs. <%=bill%></h3>";
+            document.getElementById("address_id").innerHTML="<h3>Pizzas will be delivered @ <%=address%></h3>";
+            var element=document.getElementById("textcode")
+            // When the user clicks the button, open the modal
+            btn.onclick = function() {
+              modal.style.display = "block";
+            }
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+              modal.style.display = "none";
+            }
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+              if (event.target == modal) {
+                modal.style.display = "none";
+              }
+            }
+        }
+        
+        Bill()
+      </script>
+
+    </div>
+  </div>
+
+</div>
+<script type="text/javascript">
+      function Bill()
+      {
+        // Get the modal
+            var modal = document.getElementById('myModal');
+            // Get the button that opens the modal
+            var offer=document.getElementById("code").value;
+            var btn = document.getElementById("button");
+            //alert(offer)
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+            document.getElementById("textcode").innerHTML="Your code==";
+            var element=document.getElementById("textcode")
+            // When the user clicks the button, open the modal
+            btn.onclick = function() {
+              modal.style.display = "block";
+            }
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+              modal.style.display = "none";
+            }
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+              if (event.target == modal) {
+                modal.style.display = "none";
+              }
+            }
+      }
+</script>
+
+</body>
+</html>
