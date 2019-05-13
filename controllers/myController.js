@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var vegCount = 3;
+var nonvegCount = 3; 
 
 //connect to the database
 mongoose.connect('mongodb+srv://admin:admin@pizza-cluster-46mvw.mongodb.net/test?retryWrites=true', { useNewUrlParser: true });
@@ -105,7 +107,8 @@ module.exports = function(app){
 
 	app.post('/order', urlencodedParser, function(req, res, next){
 		
-		//console.log("hello");
+		console.log(vegCount);
+		
 		console.log(req.body);
 
 		var bill = 0;
@@ -118,43 +121,37 @@ module.exports = function(app){
 		nonveg3_Q = req.body.nonveg3_quantity;
 		address = req.body.address;
 
+		var promise;
+
 		if(veg1_Q != ''){
-			var veg1_P = 200;
-			bill = bill + (veg1_Q * veg1_P);
+
+			var promise = new Promise(function(resolve, reject){
+
+				Pizzas.findOne({'id':'11'}, 'price' , function(err, ob){
+				
+					if(err){
+						console.log("error!");
+					}
+
+					resolve(ob.price);
+				});
+			});
 		}
 
-		if(veg2_Q != ''){
-			var veg2_P = 300;
-			bill = bill + (veg2_Q * veg2_P);
-		}
-
-		if(veg3_Q != ''){
-			var veg3_P = 400;
-			bill = bill + (veg3_Q * veg3_P);
-		}
-
-		if(nonveg1_Q != ''){
-			var nonveg1_P = 250;
-			bill = bill + (nonveg1_Q * nonveg1_P);
-		}
-
-		if(nonveg2_Q != ''){
-			var nonveg2_P = 350;
-			bill = bill + (nonveg2_Q * nonveg2_P);
-		}
-
-		if(nonveg3_Q != ''){
-			var nonveg3_P = 450;
-			bill = bill + (nonveg3_Q * nonveg3_P);
-		}
-
+		
 		//set pause
 		//setTimeout(function(){}, 2000);
 
-		console.log("Bill : " + bill);
+		
+
+		promise.then(function(price){
+			
+			bill = bill + price;
+
+			console.log("Bill : " + bill);
+		});
 
 		res.render('confirmation', {bill : bill, address: address});
-		
 		//res.render('mainpage');
 		
 		//res.render('confirm');
