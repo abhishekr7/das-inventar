@@ -1,5 +1,17 @@
-# pizza-portal
-Build a web app for a pizza portal
+# INVENTRO
+A web application for enabling firms to take care of their analytics needs
+
+Run command 
+
+1. node app.js
+
+Terminate command
+
+1. Ctrl + C
+
+2. lsof -i tcp:<port>
+
+3. kill -9 <PID>
 
 ## Async - Await
 
