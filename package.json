@@ -1,7 +1,6 @@
 {
   "name": "pizza",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,6 +11,17 @@
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "firebase": "^7.2.3",
     "mongoose": "^5.4.20"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhishekr7/pizza-portal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/abhishekr7/pizza-portal/issues"
+  },
+  "homepage": "https://github.com/abhishekr7/pizza-portal#readme",
+  "description": ""
 }

@@ -11,6 +11,34 @@ var path = require('path');
 
 var app = express();
 
+// firebase app must be listed always and before all firebase products
+var firebase = require("firebase/app");
+
+// firebase products to be used
+require("firebase/auth");
+require("firebase/firestore");
+require("firebase/functions");
+require("firebase/database");
+
+//initializing firebase
+
+// firebase config object 
+var firebaseConfig = {
+	// ...
+  	apiKey: "AIzaSyAPHwpmhqwAMwJ9iNcsGv_jHywHttOEa6E",
+  	authDomain: "best-inventory-manager.firebaseapp.com",
+  	databaseURL: "https://best-inventory-manager.firebaseio.com",
+  	projectId: "best-inventory-manager",
+  	storageBucket: "best-inventory-manager.appspot.com",
+  	messagingSenderId: "323033727262",
+  	appId: "1:323033727262:web:1dcc9fa1ce5bc2e508890f",
+  	measurementId: "G-5ZZPH485JF"
+}
+
+//initialize firebase
+firebase.initializeApp(firebaseConfig);
+
+
 //set up template engine
 //could be html alternatively
 app.set('view engine','ejs');
