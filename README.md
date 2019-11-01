@@ -1,6 +1,20 @@
 # INVENTRO
 A web application for enabling firms to take care of their analytics needs
 
+Components
+
+Upload csv 
+
+Analytics (id, name, quantity, date of purchase) -----> Consider a fix schema
+
++ Overall (time series) 
+
++ Product wise dynamic content generation (time series)
+
++ Date of addition(Comparison)
+
++ Single date which products did well
+
 Run command 
 
 1. node app.js
