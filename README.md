@@ -1,7 +1,15 @@
 # INVENTRO
 A web application for enabling firms to take care of their analytics needs
 
-Components
+# SQL
+
+Connect to SQL
+```
+mysql -u root -p
+```
+password : root
+
+# Components
 
 Upload csv 
 
