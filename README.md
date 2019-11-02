@@ -3,12 +3,27 @@ A web application for enabling firms to take care of their analytics needs
 
 # SQL
 
-Connect to SQL
+**Connect to the SQL server**
 ```
 mysql -u root -p
+password: (root)
 ```
-password : root
-
+**Select Database**
+```
+USE inventro
+```
+**Create Table**
+```
+CREATE TABLE orders (id INT, name VARCHAR(10), quantity INT, purchase_date DATE);
+```
+**Insert a row**
+```
+INSERT INT0 orders VALUES(1, 'test', 0, '2019-11-02');
+```
+**View table**
+```
+SELECT * from orders;
+```
 # Components
 
 Upload csv 
@@ -24,8 +39,9 @@ Analytics (id, name, quantity, date of purchase) -----> Consider a fix schema
 + Single date which products did well
 
 Run command 
-
-1. node app.js
+```
+node app.js
+```
 
 Terminate command
 
