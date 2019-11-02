@@ -1,4 +1,4 @@
-# INVENTRO
+# das-inventar 
 A web application for enabling firms to take care of their analytics needs
 
 # SQL
@@ -24,6 +24,11 @@ insert into orders values(1, 'test', 0, '2019-11-02');
 ```
 select * from orders;
 ```
+# Chart Library
+
+**Chart.js** 
+> The library contains a set of 6 charts and is 11Kb gzipped, this makes its loading time and page impact low.
+
 # Components
 
 Upload csv 
