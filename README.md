@@ -10,19 +10,19 @@ password: (root)
 ```
 **Select Database**
 ```
-USE inventro
+use inventro
 ```
 **Create Table**
 ```
-CREATE TABLE orders (id INT, name VARCHAR(10), quantity INT, purchase_date DATE);
+create table orders (id INT, name VARCHAR(10), quantity INT, purchase_date DATE);
 ```
 **Insert a row**
 ```
-INSERT INT0 orders VALUES(1, 'test', 0, '2019-11-02');
+insert into orders values(1, 'test', 0, '2019-11-02');
 ```
 **View table**
 ```
-SELECT * from orders;
+select * from orders;
 ```
 # Components
 
