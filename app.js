@@ -35,9 +35,40 @@ var firebaseConfig = {
   	measurementId: "G-5ZZPH485JF"
 }
 
-//initialize firebase
+// initialize firebase
 firebase.initializeApp(firebaseConfig);
 
+
+//**********************CREATE NEW USER***********************************
+
+firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error){
+	// handle errors here
+	//...
+	var errorCode = error.code;
+	var errorMessage = error.message;
+});
+
+//************************************************************************
+
+//**********************SIGN IN*******************************************
+
+firebase.auth().signInWithEmailAndPassword(email,password).catch(function(error){
+	// handle errors here
+	var errorCode = error.code;
+	var errorMessage = error.message;
+});
+
+//************************************************************************
+
+//**********************SIGN OUT*******************************************
+
+firebase.auth().signOut().then(function(){
+	// sign out successful
+}).catch(function(error){
+	// error occurred
+});
+
+//************************************************************************
 
 //set up template engine
 //could be html alternatively

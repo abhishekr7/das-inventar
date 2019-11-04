@@ -9,6 +9,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "chart.js": "^2.9.1",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "firebase": "^7.2.3",

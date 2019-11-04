@@ -1,11 +1,15 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/mainpage', function(req, res, next){
+router.get('/', function(req, res, next){
+	
 	//console.log('controller works !')
-	res.render('mainpage')
+	
+	res.render('main')
 });
 
+
+/*
 router.get('/menu', function(req, res, next){
 
 	res.render('menu')
@@ -20,5 +24,7 @@ router.get('/nonveg', function(req, res, next){
 
 	res.render('/nonveg')
 });
+
+*/
 
 module.exports = router;
