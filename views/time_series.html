@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>das Inventar</title>
+
+	<script src="/home/abhishek/pizza-portal/node_modules/chart.js/dist/Chart.js"></script>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+
+	<style>
+		/* The navigation bar */
+		.navbar {
+  			overflow: hidden;
+  			background-color: #333;
+  			position: fixed; /* Set the navbar to fixed position */
+  			top: 0; /* Position the navbar at the top of the page */
+  			width: 100%; /* Full width */
+		}
+
+		/* Links inside the navbar */
+		.navbar a {
+  			float: left;
+  			display: block;
+  			color: #f2f2f2;
+  			text-align: center;
+  			padding: 14px 16px;
+  			text-decoration: none;
+		}
+
+		/* Change background on mouse-over */
+		.navbar a:hover {
+  			background: #ddd;
+  			color: black;
+		}
+
+		/* Main content */
+		.main {
+  				padding: 16px;
+  				margin-top: 150px; /* Add a top margin to avoid content overlay */
+				margin-left: 200px;
+				text-align: center;
+				width: 75%;
+		}
+	
+
+	</style>
+</head>
+<body>
+
+	<div class="navbar">
+ 		<a href="index.html">Home</a>
+ 		<a href="country_wise.html">Country</a>
+  		<a href="product_wise.html">Product</a>
+ 	 	<a href="time_series.html">Time Series</a>
+ 	 	<a href="https://github.com/abhishekr7/pizza-portal">Github</a>
+	</div>
+
+	<div class="main">
+		<canvas id="chart"></canvas>
+	</div>
+
+	<script>
+
+		//doughnut
+
+		var line_chart = {
+			type: 'line',
+			data: {
+				datasets: [{
+					data: [12,5,10,13,17,16,18,23,22,29,25,26],
+					label: 'GDP',
+					lineTension: 0
+				}],
+				labels:['Jan 19','Feb 19','Mar 19','Apr 19','May 19','Jun 19','Jul 19','Aug 19','Sept 19','Oct 19','Nov 19', 'Dec 19']
+			},
+			options: {
+				responsive: true,
+				legend: {
+					position: 'top',
+				},
+				title: {
+					display: true,
+					text: 'GDP'
+				},
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: true
+						}
+					}]
+				}
+			}
+		};
+
+		window.onload = function(){
+			var ctx_line = document.getElementById('chart').getContext('2d');
+			window.bar = new Chart(ctx_line, line_chart);
+		};
+
+	</script>
+
+</body>
+</html>

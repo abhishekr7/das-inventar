@@ -11,6 +11,65 @@ var path = require('path');
 
 var app = express();
 
+// firebase app must be listed always and before all firebase products
+var firebase = require("firebase/app");
+
+// firebase products to be used
+require("firebase/auth");
+require("firebase/firestore");
+require("firebase/functions");
+require("firebase/database");
+
+//initializing firebase
+
+// firebase config object 
+var firebaseConfig = {
+	// ...
+  	apiKey: "AIzaSyAPHwpmhqwAMwJ9iNcsGv_jHywHttOEa6E",
+  	authDomain: "best-inventory-manager.firebaseapp.com",
+  	databaseURL: "https://best-inventory-manager.firebaseio.com",
+  	projectId: "best-inventory-manager",
+  	storageBucket: "best-inventory-manager.appspot.com",
+  	messagingSenderId: "323033727262",
+  	appId: "1:323033727262:web:1dcc9fa1ce5bc2e508890f",
+  	measurementId: "G-5ZZPH485JF"
+}
+
+// initialize firebase
+firebase.initializeApp(firebaseConfig);
+
+
+//**********************CREATE NEW USER***********************************
+
+firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error){
+	// handle errors here
+	//...
+	var errorCode = error.code;
+	var errorMessage = error.message;
+});
+
+//************************************************************************
+
+//**********************SIGN IN*******************************************
+
+firebase.auth().signInWithEmailAndPassword(email,password).catch(function(error){
+	// handle errors here
+	var errorCode = error.code;
+	var errorMessage = error.message;
+});
+
+//************************************************************************
+
+//**********************SIGN OUT*******************************************
+
+firebase.auth().signOut().then(function(){
+	// sign out successful
+}).catch(function(error){
+	// error occurred
+});
+
+//************************************************************************
+
 //set up template engine
 //could be html alternatively
 app.set('view engine','ejs');
