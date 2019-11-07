@@ -63,15 +63,85 @@
 
 		//doughnut
 
+		/*
+		var admin = require('firebase-admin');
+
+		var db = admin.database();	
+		var ref = db.ref('dates');
+
+		// Attach an asynchronous callback to read the data at our posts reference
+		ref.on("value", function(snapshot) {
+  			console.log(snapshot.val());
+		}, function (errorObject) {
+ 	 		console.log("The read failed: " + errorObject.code);
+		});
+
+		*/
+
+		// firebase app must be listed always and before all firebase products
+		var firebase = require("firebase/app");
+
+		// firebase products to be used
+		require("firebase/auth");
+		require("firebase/firestore");
+		require("firebase/functions");
+		require("firebase/database");
+
+		/*
+		var admin = require('firebase-admin');
+		var functions = require('firebase-functions');
+		*/
+
+		//initializing firebase
+
+		// firebase config object 
+		var firebaseConfig = {
+			// ...
+  			apiKey: "AIzaSyAPHwpmhqwAMwJ9iNcsGv_jHywHttOEa6E",
+  			authDomain: "best-inventory-manager.firebaseapp.com",
+  			databaseURL: "https://best-inventory-manager.firebaseio.com",
+  			projectId: "best-inventory-manager",
+  			storageBucket: "best-inventory-manager.appspot.com",
+  			messagingSenderId: "323033727262",
+  			appId: "1:323033727262:web:1dcc9fa1ce5bc2e508890f",
+  			measurementId: "G-5ZZPH485JF"
+		}
+
+		// initialize firebase
+		firebase.initializeApp(firebaseConfig);
+
+		var database = firebase.database();
+
+		// Attach an asynchronous callback to read the data at our posts reference	
+		var object ; 
+
+		database.ref('dates').on("value", function(snapshot) {
+  			object = snapshot.val();
+		}, function (errorObject) {
+ 			console.log("The read failed: " + errorObject.code);
+		});
+
+		var i = 0;
+
+		f_data = [];
+		f_labels = [];
+
+		for(var key in object){
+
+			f_labels.push(object[key].date);
+	
+			f_data.push(object[key].sales);	
+		}
+
 		var line_chart = {
 			type: 'line',
 			data: {
 				datasets: [{
-					data: [12,5,10,13,17,16,18,23,22,29,25,26],
+					data: f_data,
 					label: 'GDP',
 					lineTension: 0
 				}],
-				labels:['Jan 19','Feb 19','Mar 19','Apr 19','May 19','Jun 19','Jul 19','Aug 19','Sept 19','Oct 19','Nov 19', 'Dec 19']
+				labels: f_labels
 			},
 			options: {
 				responsive: true,

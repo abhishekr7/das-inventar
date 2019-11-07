@@ -50,10 +50,7 @@ app.listen(8000);
 console.log('port 8000!');
 console.log(__dirname);
 
-
 // firebase app must be listed always and before all firebase products
-
-/*
 var firebase = require("firebase/app");
 
 // firebase products to be used
@@ -61,6 +58,11 @@ require("firebase/auth");
 require("firebase/firestore");
 require("firebase/functions");
 require("firebase/database");
+
+/*
+var admin = require('firebase-admin');
+var functions = require('firebase-functions');
+*/
 
 //initializing firebase
 
@@ -76,6 +78,25 @@ var firebaseConfig = {
   	appId: "1:323033727262:web:1dcc9fa1ce5bc2e508890f",
   	measurementId: "G-5ZZPH485JF"
 }
+
+// initialize firebase
+firebase.initializeApp(firebaseConfig);
+
+var database = firebase.database();
+
+// Attach an asynchronous callback to read the data at our posts reference
+
+f_data = [];
+f_labels = [];
+
+database.ref('dates').on("value", function(snapshot) {
+  	var object = snapshot.val();
+
+}, function (errorObject) {
+ 	console.log("The read failed: " + errorObject.code);
+});
+
+/*
 
 // initialize firebase
 firebase.initializeApp(firebaseConfig);
@@ -111,5 +132,4 @@ firebase.auth().signOut().then(function(){
 });
 
 //************************************************************************
-
 */
