@@ -61,25 +61,8 @@
 
 	<script>
 
-		//doughnut
-
-		/*
-		var admin = require('firebase-admin');
-
-		var db = admin.database();	
-		var ref = db.ref('dates');
-
-		// Attach an asynchronous callback to read the data at our posts reference
-		ref.on("value", function(snapshot) {
-  			console.log(snapshot.val());
-		}, function (errorObject) {
- 	 		console.log("The read failed: " + errorObject.code);
-		});
-
-		*/
-
 		// firebase app must be listed always and before all firebase products
-		var firebase = require("firebase/app");
+var firebase = require("firebase/app");
 
 		// firebase products to be used
 		require("firebase/auth");
@@ -113,27 +96,54 @@
 		var database = firebase.database();
 
 		// Attach an asynchronous callback to read the data at our posts reference	
+		
 		var object ; 
 
-		database.ref('dates').on("value", function(snapshot) {
+		var f_data = [];
+		var f_labels = [];
+
+		function getData(callback){
+			
+			return database.ref('dates').on("value", function(snapshot) {
+  				
   			object = snapshot.val();
-		}, function (errorObject) {
+
+			var i = 0;
+
+			for(var key in object){
+
+				//console.log("Still IN !");
+				f_labels.push(object[key].date);
+				//console.log(object[key].date);
+					
+				//console.log("andar aata");
+
+				f_data.push(object[key].sales);	
+				//console.log(object[key].sales);
+			}
+
+			callback();				
+
+		}, function (errorObject) {	
  			console.log("The read failed: " + errorObject.code);
 		});
-
-		var i = 0;
-
-		f_data = [];
-		f_labels = [];
-
-		for(var key in object){
-
-			f_labels.push(object[key].date);
-	
-			f_data.push(object[key].sales);	
+		
 		}
 
-		var line_chart = {
+		function checkData(){
+
+			for(var x in f_data){
+				console.log(f_data[x]);
+			}
+		}	
+
+
+		function loadScreen(){
+
+		window.onload = function(){
+			var ctx_line = document.getElementById('chart').getContext('2d');
+			
+			var line_chart = {
 			type: 'line',
 			data: {
 				datasets: [{
@@ -162,10 +172,13 @@
 			}
 		};
 
-		window.onload = function(){
-			var ctx_line = document.getElementById('chart').getContext('2d');
 			window.bar = new Chart(ctx_line, line_chart);
 		};
+
+	}
+
+	//function call
+	getData(loadScreen);
 
 	</script>
 
