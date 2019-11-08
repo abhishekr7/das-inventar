@@ -61,97 +61,40 @@
 
 	<script>
 
-		// firebase app must be listed always and before all firebase products
-var firebase = require("firebase/app");
 
-		// firebase products to be used
-		require("firebase/auth");
-		require("firebase/firestore");
-		require("firebase/functions");
-		require("firebase/database");
+		function getDateStrings(date_arr){
 
-		/*
-		var admin = require('firebase-admin');
-		var functions = require('firebase-functions');
-		*/
+			var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+			dateString_arr = []
 
-		//initializing firebase
+			for(var key in date_arr){
 
-		// firebase config object 
-		var firebaseConfig = {
-			// ...
-  			apiKey: "AIzaSyAPHwpmhqwAMwJ9iNcsGv_jHywHttOEa6E",
-  			authDomain: "best-inventory-manager.firebaseapp.com",
-  			databaseURL: "https://best-inventory-manager.firebaseio.com",
-  			projectId: "best-inventory-manager",
-  			storageBucket: "best-inventory-manager.appspot.com",
-  			messagingSenderId: "323033727262",
-  			appId: "1:323033727262:web:1dcc9fa1ce5bc2e508890f",
-  			measurementId: "G-5ZZPH485JF"
-		}
+				var date = new Date(date_arr[key]);
 
-		// initialize firebase
-		firebase.initializeApp(firebaseConfig);
+				var d = date.getDate().toString();
+				var m = months[date.getMonth()];
+				var y = date.getYear().toString();
 
-		var database = firebase.database();
+				var str_date = d + " " + m + " " + y;
 
-		// Attach an asynchronous callback to read the data at our posts reference	
-		
-		var object ; 
-
-		var f_data = [];
-		var f_labels = [];
-
-		function getData(callback){
-			
-			return database.ref('dates').on("value", function(snapshot) {
-  				
-  			object = snapshot.val();
-
-			var i = 0;
-
-			for(var key in object){
-
-				//console.log("Still IN !");
-				f_labels.push(object[key].date);
-				//console.log(object[key].date);
-					
-				//console.log("andar aata");
-
-				f_data.push(object[key].sales);	
-				//console.log(object[key].sales);
+				dateString_arr.push(str_date);
 			}
 
-			callback();				
-
-		}, function (errorObject) {	
- 			console.log("The read failed: " + errorObject.code);
-		});
-		
+			return dateString_arr;
 		}
 
-		function checkData(){
+		console.log("hello");
+		console.log(typeof "<%=f_labels%>");
 
-			for(var x in f_data){
-				console.log(f_data[x]);
-			}
-		}	
-
-
-		function loadScreen(){
-
-		window.onload = function(){
-			var ctx_line = document.getElementById('chart').getContext('2d');
-			
-			var line_chart = {
+		var line_chart = {
 			type: 'line',
 			data: {
 				datasets: [{
-					data: f_data,
+					data: "<%=f_data%>",
 					label: 'GDP',
 					lineTension: 0
 				}],
-				labels: f_labels
+				labels: getDateStrings("<%=f_labels%>")
 			},
 			options: {
 				responsive: true,
@@ -172,13 +115,10 @@ var firebase = require("firebase/app");
 			}
 		};
 
+		window.onload = function(){
+			var ctx_line = document.getElementById('chart').getContext('2d');
 			window.bar = new Chart(ctx_line, line_chart);
 		};
-
-	}
-
-	//function call
-	getData(loadScreen);
 
 	</script>
 

@@ -47,7 +47,7 @@ var object ;
 var f_data = [];
 var f_labels = [];
 
-function getData(callback){
+function getDataFromFirebase(callback, res){
 			
 	return database.ref('dates').on("value", function(snapshot) {
   				
@@ -61,7 +61,7 @@ function getData(callback){
 		f_data.push(object[key].sales);
 	}
 
-	callback();				
+	callback(res);				
 
 	}, function (errorObject) {	
  		console.log("The read failed: " + errorObject.code);
@@ -69,7 +69,7 @@ function getData(callback){
 		
 }
 
-function renderPageWithData(){
+function renderPageWithData(res){
 
 	res.render('time_series.html', {f_labels: f_labels, f_data: f_data});
 }	
@@ -85,9 +85,8 @@ router.get('/index', function(req,res){
 	res.render('index.html'); 
 });
 
-router.post('/time',urlencodedParser , function(req,res){
-
-	getDataFromFirebase(renderPageWithData);
+router.get('/time',urlencodedParser , function(req,res){
+	getDataFromFirebase(renderPageWithData, res);
 });
 
 router.get('/product', function(req,res){
@@ -103,6 +102,3 @@ app.listen(8000);
 
 console.log('port 8000!');
 console.log(__dirname);
-
-
-	
