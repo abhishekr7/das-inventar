@@ -49,7 +49,7 @@ var f_labels = [];
 
 function getDataFromFirebase(callback, res){
 			
-	return database.ref('dates').on("value", function(snapshot) {
+	return database.ref('dates').orderByChild("date").limitToLast(100).on("value", function(snapshot) {
   				
   	object = snapshot.val();
 

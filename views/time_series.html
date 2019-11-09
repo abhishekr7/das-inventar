@@ -65,15 +65,19 @@
 		function getDateStrings(date_arr){
 
 			var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-			dateString_arr = []
+			dateString_arr = [];
 
-			for(var key in date_arr){
+			var date_entries = date_arr.split(",")
 
-				var date = new Date(date_arr[key]);
+			for(var entry in date_entries){
+
+				//console.log(date_entries[entry]);
+
+				var date = new Date(Number(date_entries[entry]));
 
 				var d = date.getDate().toString();
 				var m = months[date.getMonth()];
-				var y = date.getYear().toString();
+				var y = date.getFullYear().toString();
 
 				var str_date = d + " " + m + " " + y;
 
@@ -83,14 +87,30 @@
 			return dateString_arr;
 		}
 
+		function resolveSalesValues(sales_arr){
+
+			var sales_entries = sales_arr.split(",");
+
+			var sales_new = []
+
+			for(var entry in sales_entries){
+				
+				console.log(sales_entries[entry]);
+				
+				sales_new.push(sales_entries[entry]);
+			}
+
+			return sales_new;
+		}
+
 		console.log("hello");
-		console.log(typeof "<%=f_labels%>");
+		//console.log(typeof "<%=f_labels%>");
 
 		var line_chart = {
 			type: 'line',
 			data: {
 				datasets: [{
-					data: "<%=f_data%>",
+					data: resolveSalesValues("<%=f_data%>"),
 					label: 'GDP',
 					lineTension: 0
 				}],
