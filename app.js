@@ -47,6 +47,9 @@ var object ;
 var f_data = [];
 var f_labels = [];
 
+var f_data2 = [];
+var f_labels2 = [];
+
 function getDataFromFirebase(callback, res){
 			
 	return database.ref('dates').orderByChild("date").limitToLast(100).on("value", function(snapshot) {
@@ -72,8 +75,34 @@ function getDataFromFirebase(callback, res){
 function renderPageWithData(res){
 
 	res.render('time_series.html', {f_labels: f_labels, f_data: f_data});
-}	
+}
 
+function getDataFromFirebase2(callback, res){
+			
+	return database.ref('geo').orderByChild("sales").limitToLast(6).on("value", function(snapshot) {
+  				
+  	object = snapshot.val();
+
+	var i = 0;
+
+	for(var key in object){
+
+		f_labels2.push(object[key].geoloc);
+		f_data2.push(object[key].sales);
+	}
+
+	callback(res);				
+
+	}, function (errorObject) {	
+ 		console.log("The read failed: " + errorObject.code);
+	});
+		
+}
+
+function renderPageWithData2(res){
+
+	res.render('country_wise.html', {f_labels: f_labels2, f_data: f_data2});
+}	
 
 app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
@@ -93,8 +122,8 @@ router.get('/product', function(req,res){
 	res.render('product_wise.html');
 });
 
-router.get('/country', function(req,res){
-	res.render('country_wise.html');
+router.get('/country', urlencodedParser , function(req,res){
+	getDataFromFirebase2(renderPageWithData2, res);
 });
 
 app.use('/', router);

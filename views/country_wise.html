@@ -62,12 +62,44 @@
 	<script>
 
 		//doughnut
+		function resolveGeoValues(geo_arr){
+			
+			geo_new = [];
+
+			var geo_entries = geo_arr.split(",")
+
+			for(var entry in geo_entries){
+
+				//console.log(date_entries[entry]);
+				//console.log(geo_entries[entry]);
+
+				geo_new.push(geo_entries[entry]);
+			}
+
+			return geo_new;
+		}
+
+		function resolveSalesValues(sales_arr){
+
+			var sales_entries = sales_arr.split(",");
+
+			var sales_new = []
+
+			for(var entry in sales_entries){
+				
+				console.log(sales_entries[entry]);
+				
+				sales_new.push(sales_entries[entry]);
+			}
+
+			return sales_new;
+		}
 
 		var doughnut_chart = {
 			type: 'doughnut',
 			data: {
 				datasets: [{
-					data: [12,19,3,5,2,3,10],
+					data: resolveSalesValues("<%=f_data%>"),
 
 					backgroundColor: [
 						'rgba(255, 99, 132, 0.2)',
@@ -80,7 +112,7 @@
 					],
 					label: 'GDP'
 				}],
-				labels:['India','Germany','USA','Russia','China','Japan','England']
+				labels: resolveGeoValues("<%=f_labels%>")
 			},
 			options: {
 				responsive: true,
