@@ -32,21 +32,19 @@ exports.addTimeSeriesData = functions.https.onRequest((req,res) => {
 		})
 });
 
-/*
+
 exports.addProductsData = functions.https.onRequest((req, res) => {
 
 	const KEY = req.query.key;
-	const DATE = req.query.date;
-	const QUANTITY = req.query.quantity; 
-	const SALES = req.query.sales;
+	const PNAME = req.query.pname;
+	const RETURNS = req.query.returns;
 
-	productDate = {
-		date: DATE,
-		quantity: QUANTITY,
-		sales: SALES
+	productData = {
+		returns: RETURNS,
+		pname: PNAME
 	};
 
-	admin.database().ref('products/' + KEY).set(periodDate)
+	admin.database().ref('products/' + KEY).set(productData)
 		.then(() => {
 			res.status(200).send("success");
 		})
@@ -55,7 +53,6 @@ exports.addProductsData = functions.https.onRequest((req, res) => {
 			res.status(500).send(err);
 		})
 });
-*/
 
 exports.addGeoData = functions.https.onRequest((req, res) => {
 
@@ -63,12 +60,12 @@ exports.addGeoData = functions.https.onRequest((req, res) => {
 	const GEOLOC = req.query.geoloc; 
 	const SALES = req.query.sales;
 
-	productData = {
-		geoloc: GEOLOC,
-		sales: SALES
+	geoData = {
+		sales: SALES,
+		geoloc: GEOLOC
 	};
 
-	admin.database().ref('geo/' + KEY).set(productData)
+	admin.database().ref('geo/' + KEY).set(geoData)
 		.then(() => {
 			res.status(200).send("success");
 		})

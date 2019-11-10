@@ -43,13 +43,6 @@ firebase.initializeApp(firebaseConfig);
 
 var database = firebase.database();
 
-var object ; 
-var f_data = [];
-var f_labels = [];
-
-var f_data2 = [];
-var f_labels2 = [];
-
 function getDataFromFirebase(callback, res){
 			
 	return database.ref('dates').orderByChild("date").limitToLast(100).on("value", function(snapshot) {
@@ -58,23 +51,21 @@ function getDataFromFirebase(callback, res){
 
 	var i = 0;
 
+	var f_data = [];
+	var f_labels = [];		
+
 	for(var key in object){
 
 		f_labels.push(object[key].date);
 		f_data.push(object[key].sales);
 	}
 
-	callback(res);				
+	callback(res, f_data, f_labels);				
 
 	}, function (errorObject) {	
  		console.log("The read failed: " + errorObject.code);
 	});
 		
-}
-
-function renderPageWithData(res){
-
-	res.render('time_series.html', {f_labels: f_labels, f_data: f_data});
 }
 
 function getDataFromFirebase2(callback, res){
@@ -83,15 +74,18 @@ function getDataFromFirebase2(callback, res){
   				
   	object = snapshot.val();
 
+  	var f_data = [];	
+	var f_labels = [];
+
 	var i = 0;
 
 	for(var key in object){
 
-		f_labels2.push(object[key].geoloc);
-		f_data2.push(object[key].sales);
+		f_labels.push(object[key].geoloc);
+		f_data.push(object[key].sales);
 	}
 
-	callback(res);				
+	callback(res, f_data, f_labels);				
 
 	}, function (errorObject) {	
  		console.log("The read failed: " + errorObject.code);
@@ -99,10 +93,47 @@ function getDataFromFirebase2(callback, res){
 		
 }
 
-function renderPageWithData2(res){
+function getDataFromFirebase3(callback, res){
+			
+	return database.ref('products').orderByKey().limitToLast(6).on("value", function(snapshot) {
+  				
+  	object = snapshot.val();
 
-	res.render('country_wise.html', {f_labels: f_labels2, f_data: f_data2});
+  	var f_data = [];
+	var f_labels = [];
+
+	var i = 0;
+
+	for(var key in object){
+
+		f_labels.push(object[key].pname);
+		f_data.push(object[key].returns);
+	}
+
+	callback(res, f_data, f_labels);				
+
+	}, function (errorObject) {	
+ 		console.log("The read failed: " + errorObject.code);
+	});
+		
+}
+
+function renderPageWithData(res, f_data, f_labels){
+
+	res.render('time_series.html', {f_labels: f_labels, f_data: f_data});
+}
+
+
+function renderPageWithData2(res, f_data, f_labels){
+
+	res.render('country_wise.html', {f_labels: f_labels, f_data: f_data});
 }	
+
+function renderPageWithData3(res, f_data, f_labels){
+
+	res.render('product_wise.html', {f_labels: f_labels, f_data: f_data});
+}
+
 
 app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
@@ -114,16 +145,16 @@ router.get('/index', function(req,res){
 	res.render('index.html'); 
 });
 
-router.get('/time',urlencodedParser , function(req,res){
+router.get('/time', urlencodedParser , function(req,res){
 	getDataFromFirebase(renderPageWithData, res);
-});
-
-router.get('/product', function(req,res){
-	res.render('product_wise.html');
 });
 
 router.get('/country', urlencodedParser , function(req,res){
 	getDataFromFirebase2(renderPageWithData2, res);
+});
+
+router.get('/product', urlencodedParser, function(req,res){
+	getDataFromFirebase3(renderPageWithData3, res)
 });
 
 app.use('/', router);

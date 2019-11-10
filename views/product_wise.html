@@ -65,15 +65,50 @@
 
 		//bar
 
+		function resolveProductValues(pname_arr){
+			
+			pname_new = [];
+
+			var pname_entries = pname_arr.split(",")
+
+			for(var entry in pname_entries){
+
+				//console.log(date_entries[entry]);
+				//console.log(geo_entries[entry]);
+
+				pname_new.push(pname_entries[entry]);
+			}
+
+			return pname_new;
+		}
+
+		function resolveSalesValues(sales_arr){
+
+			console.log(sales_arr);
+
+			var sales_new = []
+
+			var sales_entries = sales_arr.split(",");
+
+			for(var entry in sales_entries){
+				
+				console.log(sales_entries[entry]);
+				
+				sales_new.push(sales_entries[entry]);
+			}
+
+			return sales_new;
+		}
+
 		var bar_chart = {
 			type: 'bar',
 			data: {
 
-				labels:['Needably','Pozoto','VirTrader','Voyagem','Elixu','Bioific','BatteryBull'],
+				labels: resolveProductValues("<%=f_labels%>"),
 				
 				datasets: [{
 					label: '',
-					data: [12,19,3,5,2,3,10],
+					data: resolveSalesValues("<%=f_data%>"),
 					backgroundColor: [
 						'rgba(255, 99, 132, 0.2)',
 						'rgba(54, 162, 235, 0.2)',
